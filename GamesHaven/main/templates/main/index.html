@@ -1,0 +1,54 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Gamers Haven {% endblock %}
+
+{% block content %}
+
+
+
+<div class="row   row-cols-1 row-cols-md-2  hero-row">
+    <div class="col order-2 order-md-1 ">
+        <div class="d-flex flex-column justify-content-center align-items-center h-100">
+            <h1 class="text-center">The Place for Gamers!</h1>
+            <h3 class="text-center">For all the games information you need</h3>
+        </div>
+
+    </div>
+
+    <div class="col order-1 overflow-hidden hero h-100 p-0">
+        <!-- <img class="w-100 h-100 object-fit-cover" src="https://static0.srcdn.com/wordpress/wp-content/uploads/2023/11/greatest-movies-of-all-time.jpg" /> -->
+        <div class="vid-container">
+          <video class="h-100" src="/static/videos/backvid.mp4" muted autoplay loop></video>
+        </div>
+    </div>
+</div>
+
+<hr />
+<a href="{% url 'games:all_games_view' %}">
+<div class="d-flex align-items-center justify-content-between ">
+  <h2 class="m-0 p-0">Latest Games</h2>
+  <span class="material-symbols-outlined text-fxl">arrow_forward</span>
+</div>
+</a>
+<div class="row mt-2 row-cols-1 row-cols-md-3 g-4">
+
+  {% for game in games %}
+    <div class="col">
+        
+        <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow gap-2">
+            <div class="d-flex align-items-center">
+              <span class="material-symbols-outlined">star</span>
+              <h5 class="m-0 p-0">{{game.rating}}</h5>
+            </div>
+            <img src="{{game.poster.url}}" class="w-100 poster-thumb object-fit-cover"/>
+            <a href="{% url 'games:game_detail_view' game.id %}"><h3>{{game.title}}</h3></a>
+            <h5>Published by: {{game.publisher}}</h5>
+            <h6>{{game.release_date}}</h6>
+        </div>
+    </div>
+  {% endfor %}
+
+
+</div>
+
+{% endblock %}
