@@ -31,7 +31,9 @@ def game_detail_view(request:HttpRequest, game_id:int):
 
     game = Game.objects.get(pk=game_id)
 
-    return render(request, 'games/game_detail.html', {"game" : game})
+    reviews = Review.objects.filter(game=game)
+
+    return render(request, 'games/game_detail.html', {"game" : game, "reviews": reviews})
 
 
 def game_update_view(request:HttpRequest, game_id:int):

@@ -25,10 +25,24 @@
 
 </div>
 
+<!-- reviews -->
+<h2 class="mt-5">Comments ({{reviews.count}})</h2>
+{% for review in reviews %}
+<div class="d-flex flex-column gap-2 p-4 shadow">
+  <h4>{{ review.name }}</h4>
+  <p>{{ review.comment }}</p>
+  <p class="text-muted">{{ review.created_at }}</p>
+</div>
+{% endfor %}
+
 <hr />
-<!-- add review form -->
-<h2>Comments</h2>
-<form action="{% url 'games:add_review_view' game.id %}" method="post">
+<!-- review form -->
+ {% if reviews.count == 0 %}
+  <h2 class="mt-5">Be first to comment</h2>
+ {% else %}
+  <h2 class="mt-5">Add a comment</h2>
+ {% endif %}
+<form class="d-flex flex-column gap-2" action="{% url 'games:add_review_view' game.id %}" method="post">
   {% csrf_token %}
   <input class="form-control" type="text" name="name" placeholder="Your name" required />
   <textarea class="form-control" name="comment" placeholder="Your comment" required></textarea>
