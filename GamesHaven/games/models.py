@@ -19,5 +19,8 @@ class Game(models.Model):
     poster = models.ImageField(upload_to="images/", default="images/default.jpg")
 
 
-
-
+class Review(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    name = models.CharField(max_length=1024)
+    comment = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
