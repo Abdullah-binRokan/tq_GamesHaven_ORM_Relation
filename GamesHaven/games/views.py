@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 
-from .models import Game
+from .models import Game, Review
 from .forms import GameForm
 
 # Create your views here.
@@ -87,3 +87,11 @@ def search_games_view(request:HttpRequest):
 
 
     return render(request, "games/search_games.html", {"games" : games})
+
+def add_review_view(request: HttpRequest, game_id: int):
+    if request.method == "POST":
+        game_object = Review.objects.get(pk=game_id)
+        new_review = Review(game=game_object, name=request.POST["name"], comment=request.POST["comment"], rating=request.POST["rating"])
+        new_review.save()
+
+    return redirect("game:game_detail_view", game_id=game_id)
