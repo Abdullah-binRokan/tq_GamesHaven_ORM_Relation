@@ -10,5 +10,6 @@ urlpatterns = [
     path("update/<game_id>/", views.game_update_view, name="game_update_view"),
     path("delete/<game_id>/", views.game_delete_view, name="game_delete_view"),
     path("all/", views.all_games_view, name="all_games_view"),
-    path("search/", views.search_games_view, name="search_games_view")
+    path("search/", views.search_games_view, name="search_games_view"),
+    path("add_review/<game_id>/", views.add_review_view, name="add_review_view")
 ]

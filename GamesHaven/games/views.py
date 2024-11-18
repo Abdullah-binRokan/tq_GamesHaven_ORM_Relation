@@ -90,8 +90,8 @@ def search_games_view(request:HttpRequest):
 
 def add_review_view(request: HttpRequest, game_id: int):
     if request.method == "POST":
-        game_object = Review.objects.get(pk=game_id)
+        game_object = Game.objects.get(pk=game_id)
         new_review = Review(game=game_object, name=request.POST["name"], comment=request.POST["comment"], rating=request.POST["rating"])
         new_review.save()
 
-    return redirect("game:game_detail_view", game_id=game_id)
+    return redirect("games:game_detail_view", game_id=game_id)
