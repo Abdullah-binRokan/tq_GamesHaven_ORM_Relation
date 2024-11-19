@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 
-from .models import Game, Review
+from .models import Game, Review, Category
 from .forms import GameForm
 
 # Create your views here.
@@ -9,6 +9,9 @@ from .forms import GameForm
 def create_game_view(request:HttpRequest):
 
     game_form = GameForm()
+
+    # define categories so we can pass it as context
+    categories = Category.objects.all()
 
     if request.method == "POST":
         game_form = GameForm(request.POST, request.FILES)
@@ -24,7 +27,7 @@ def create_game_view(request:HttpRequest):
         #return redirect('main:home_view')
     
 
-    return render(request, "games/create.html", {"game_form":game_form,"RatingChoices": reversed(Game.RatingChoices.choices)})
+    return render(request, "games/create.html", {"game_form":game_form,"RatingChoices": reversed(Game.RatingChoices.choices), "categories": categories})
 
 
 def game_detail_view(request:HttpRequest, game_id:int):
