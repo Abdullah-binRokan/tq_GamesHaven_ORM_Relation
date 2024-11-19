@@ -18,6 +18,9 @@ class Game(models.Model):
     release_date = models.DateField()
     poster = models.ImageField(upload_to="images/", default="images/default.jpg")
 
+    # defines the string representation of an instance of a model using dunder function
+    def __str__(self) -> str:
+        return self.title
 
 class Review(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
@@ -25,3 +28,7 @@ class Review(models.Model):
     comment = models.TextField()
     rating = models.SmallIntegerField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    # defines the string representation of an instance of a model using dunder function
+    def __str__(self) -> str:
+        return f"{self.name} on {self.game.title}"
