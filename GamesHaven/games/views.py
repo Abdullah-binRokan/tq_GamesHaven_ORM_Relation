@@ -14,17 +14,19 @@ def create_game_view(request:HttpRequest):
     categories = Category.objects.all()
 
     if request.method == "POST":
-        game_form = GameForm(request.POST, request.FILES)
-        if game_form.is_valid():
-            game_form.save()
-            return redirect('main:home_view')
-        else:
-            print("not valid form")
+        # game_form = GameForm(request.POST, request.FILES)
+        # if game_form.is_valid():
+        #     game_form.save()
+        #     return redirect('main:home_view')
+        # else:
+        #     print("not valid form", game_form.errors)
 
-        # new_game = Game(title=request.POST["title"], description=request.POST["description"], publisher=request.POST["publisher"], rating=request.POST["rating"], release_date=request.POST["release_date"], poster=request.FILES["poster"])
-        # new_game.save()
+        new_game = Game(title=request.POST["title"], description=request.POST["description"], publisher=request.POST["publisher"], rating=request.POST["rating"], release_date=request.POST["release_date"], poster=request.FILES["poster"])
+        new_game.save()
+        # use set to add categories (many to many field) to the new_game object
+        new_game.categories.set(request.POST.getlist("categories"))
 
-        #return redirect('main:home_view')
+        return redirect('main:home_view')
     
 
     return render(request, "games/create.html", {"game_form":game_form,"RatingChoices": reversed(Game.RatingChoices.choices), "categories": categories})
