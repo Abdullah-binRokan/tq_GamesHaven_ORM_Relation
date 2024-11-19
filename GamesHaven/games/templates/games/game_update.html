@@ -31,6 +31,12 @@
                 </div>
                 <div class="col">
                     <input type="file" name="poster" class="form-control"/>
+                    <!-- category -->
+                    <h6 class="pt-3">Category:</h6>
+                    {% for category in categories %}
+                        <input class="form-check-input" type="checkbox" id="category-{{ category.id }}" value="{{ category.id }}" />
+                        <label class="form-check-label" for="category-{{ category.id }}">{{ category.name }}</label>
+                    {% endfor %}
                 </div>
             </div>
         

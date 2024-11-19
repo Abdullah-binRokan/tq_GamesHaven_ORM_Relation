@@ -44,6 +44,7 @@ def game_detail_view(request:HttpRequest, game_id:int):
 def game_update_view(request:HttpRequest, game_id:int):
 
     game = Game.objects.get(pk=game_id)
+    categories = Category.objects.all()
 
     if request.method == "POST":
         game.title = request.POST["title"]
@@ -58,7 +59,7 @@ def game_update_view(request:HttpRequest, game_id:int):
 
         return redirect("games:game_detail_view", game_id=game.id)
 
-    return render(request, "games/game_update.html", {"game":game})
+    return render(request, "games/game_update.html", {"game":game, "categories": categories})
 
 
 def game_delete_view(request:HttpRequest, game_id:int):
