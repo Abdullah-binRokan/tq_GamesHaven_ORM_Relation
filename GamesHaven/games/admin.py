@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Game, Review
+from .models import Game, Review, Category
 
 # Register your models here.
 # define custome admin configuration for Game model
@@ -15,3 +15,4 @@ class ReviewAdmin(admin.ModelAdmin):
 # register the models with the custom GameAdmin & ReviewAdmin configuration.
 admin.site.register(Game, GameAdmin)
 admin.site.register(Review, ReviewAdmin)
+admin.site.register(Category)
