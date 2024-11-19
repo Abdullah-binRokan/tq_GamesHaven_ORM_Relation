@@ -54,7 +54,8 @@ def game_update_view(request:HttpRequest, game_id:int):
         game.rating = request.POST["rating"]
         if "poster" in request.FILES: game.poster = request.FILES["poster"]
         game.save()
-
+        # use set to update category field (many to many)
+        game.categories.set(request.POST.getlist("categories"))
 
 
         return redirect("games:game_detail_view", game_id=game.id)
