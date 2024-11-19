@@ -2,5 +2,14 @@ from django.contrib import admin
 from .models import Game, Review
 
 # Register your models here.
-admin.site.register(Game)
-admin.site.register(Review)
+# define custome admin configuration for Game model
+class GameAdmin(admin.ModelAdmin):
+    # specify the fields to display in the list veiw of the admin interface
+    list_display = ("title", "publisher", "rating")
+
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ("name", "game", "rating")
+
+# register the models with the custom GameAdmin & ReviewAdmin configuration.
+admin.site.register(Game, GameAdmin)
+admin.site.register(Review, ReviewAdmin)
