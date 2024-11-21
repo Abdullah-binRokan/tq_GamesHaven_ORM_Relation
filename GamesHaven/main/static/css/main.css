@@ -181,6 +181,26 @@ a:hover {
 
 /* End Star Rating */
 
+/* Begin games cards */
+
+.category-Adventure {
+    background-color: var(--bs-primary);
+}
+
+.category-Fighting {
+    background-color: var(--bs-secondary);
+}
+
+.category-Horror {
+    background-color: var(--bs-danger);
+}
+
+.category-Sport {
+    background-color: var(--bs-success);
+}
+
+/* End games cards */
+
 @media only screen and (max-width:800px)  {
     .hero {
         transform: skewX(0deg);
