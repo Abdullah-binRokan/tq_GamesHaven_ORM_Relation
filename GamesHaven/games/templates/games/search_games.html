@@ -28,25 +28,6 @@
 <p class="bg-warning p-3 rounded">No results found for your search "{{request.GET.search}}"</p>
 {% endif %}
 
-<div class="row mt-2 row-cols-1 row-cols-md-3 g-4">
-
-    {% for game in games %}
-      <div class="col">
-          
-          <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow gap-2">
-            <div class="d-flex align-items-center">
-                <span class="material-symbols-outlined">star</span>
-                <h5 class="m-0 p-0">{{game.rating}}</h5>
-            </div>
-            <img src="{{game.poster.url}}" class="w-100 poster-thumb object-fit-cover"/>
-            <a href="{% url 'games:game_detail_view' game.id %}"><h3>{{game.title}}</h3></a>
-            <h5>Published by: {{game.publisher}}</h5>
-            <h6>{{game.release_date}}</h6>
-          </div>
-      </div>
-    {% endfor %}
-  
-  
-  </div>
+{% include 'games/components/cards_list.html' %}
 
 {% endblock %}
