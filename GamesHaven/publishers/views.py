@@ -9,8 +9,14 @@ def add_publisher_view(request: HttpRequest):
         publisher_form = PublisherForm(request.POST, request.FILES)
         if publisher_form.is_valid():
             publisher_form.save()
-            # return redirect("")
+            return redirect("publishers:all_publishers_view")
         else:
             print("form error: ", PublisherForm.errors)
 
     return render(request, "publishers/add.html")
+
+
+def all_publishers_view(request: HttpRequest):
+    publishers = Publisher.objects.all()
+
+    return render(request, "publishers/all.html", {"publishers": publishers})

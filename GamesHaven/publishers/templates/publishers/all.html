@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+
+
+{% block title %}Add Publisher{% endblock %}
+
+{% block content %}
+<h1>All Publishers</h1>
+<div class="container">
+    <div class="row mt-2 row-cols-1 row-cols-md-3 g-4">
+        {% for publisher in publishers %}
+        <div class="col">
+            <div class="justify-content-start align-items-start h-100 p-4 shadow gap-2">
+                <div>
+                    <img src="{{ publisher.image.url }}" alt="{{ publisher.name }}" class="w-100 poster-thumb object-fit-contain">
+                </div>
+                <div>{{ publisher.name }}</div>
+                <a href="#">
+                    <div class="d-flex justify-content-between">
+                    
+                        <span>More</span>
+                        <span class="material-symbols-outlined text-fxl">arrow_forward</span>
+                    
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+
+{% endblock %}
