@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+
+{% block title %}Add Publisher{% endblock %}
+
+{% block content %}
+<h1>Add a Publisher</h1>
+
+<div class="row">
+
+    <div class="col-6">
+
+        <form class="d-flex flex-column gap-2" action="{% url 'publishers:add_publisher_view' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" placeholder="Name" name="name" class="form-control" required minlength="5" maxlength="512"/>
+            <textarea placeholder="Description" name="description" class="form-control" required></textarea>
+            <input type="file" name="image" class="form-control" required accept="image/*"/>
+            <input type="submit" value="Create Game" class="btn btn-primary" />
+        </form>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
