@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+
+
+{% block title %}Publisher Details{% endblock %}
+
+{% block content %}
+<h1>{{ publisher.name }}</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="d-flex flex-column p-4 gap-2 shadow">
+                <img src="{{publisher.image.url}}" alt="{{ publisher.name }}" class="w-100">
+                <div>
+                    <p>{{ publisher.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+
+{% endblock %}
